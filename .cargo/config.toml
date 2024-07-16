@@ -1,5 +1,13 @@
 [source.crates-io]
 replace-with = "vendored-sources"
 
+[source."git+https://github.com/nrc/zero.git?rev=6fe64e981ce1e4d07c5cffec3019b5128af4a7b7"]
+git = "https://github.com/nrc/zero.git"
+rev = "6fe64e981ce1e4d07c5cffec3019b5128af4a7b7"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/ctron/colored_json.git"]
+git = "https://github.com/ctron/colored_json.git"
+
 [source.vendored-sources]
 directory = "vendor"

@@ -6,16 +6,7 @@ basic test with cargo vendor.
 
 ## Steps
 
-* Basic code using clap as dependency declared on Cargo.toml
-
-Clone and run:
-
-```shell
-➜  vendedor git:(main) ✗ cargo run potato
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.01s
-     Running `target/debug/vendedor potato`
-otatop
-```
+Clone
 
 ### Install and run as described on <https://crates.io/crates/cargo-vendor>
 
@@ -45,19 +36,18 @@ cargo cache --autoclean
 Yes we need to run `cargo cache --autoclean` 2x to have output like this:
 
 ```shell
-cargo cache --autoclean
 Clearing cache...
 
 Cargo cache '/home/heliofrota/.cargo':
 
-Total:                             1.37 GB
-  43 installed binaries:         535.03 MB
-  Registry:                      710.33 MB
-    Registry index:               82.10 MB
-    4185 crate archives:         628.23 MB
+Total:                           392.56 MB
+  17 installed binaries:         216.95 MB
+  Registry:                      153.25 MB
+    Registry index:               34.19 MB
+    831 crate archives:          119.06 MB
     0 crate source checkouts:         0  B
-  Git db:                        123.60 MB
-    28 bare git repos:           123.60 MB
+  Git db:                         22.35 MB
+    9 bare git repos:             22.35 MB
     0 git repo checkouts:             0  B
 ```
 
@@ -67,41 +57,29 @@ Build this project again
 cargo clean ; cargo build
 ```
 
-Run `cargo cache --autoclean` the output will be similar to previous...
-
-Comment the content of `.cargo/config.toml`
-
-```toml
-# [source.crates-io]
-# replace-with = "vendored-sources"
-
-# [source.vendored-sources]
-# directory = "vendor"
-```
-
-Build again
+Run `cargo cache --autoclean` the output will be similar to previous, but we have modifications
+because it checks out colored_json and zero:
 
 ```shell
-cargo clean ; cargo build
-```
-
-Now when `cargo cache --autoclean` shows a different output
-
-```shell
-cargo cache --autoclean
+➜  vendedor git:(main) ✗ cargo cache --autoclean
 Clearing cache...
 
 Cargo cache '/home/heliofrota/.cargo':
 
-Total:                                      1.45 GB => 1.37 GB
-  43 installed binaries:                             535.03 MB
-  Registry:                             796.16 MB => 710.33 MB
-    Registry index:                                   82.10 MB
-    4185 crate archives:                             628.23 MB
-    195 => 0 crate source checkouts:          85.83 MB => 0  B
-  Git db:                                            123.60 MB
-    28 bare git repos:                               123.60 MB
-    0 git repo checkouts:                                 0  B
+Total:                                394.56 MB => 392.56 MB
+  17 installed binaries:                           216.95 MB
+  Registry:                           154.86 MB => 153.25 MB
+    Registry index:                                 34.19 MB
+    831 crate archives:                            119.06 MB
+    6 => 0 crate source checkouts:           1.61 MB => 0  B
+  Git db:                               22.74 MB => 22.35 MB
+    9 bare git repos:                               22.35 MB
+    2 => 0 git repo checkouts:             389.45 KB => 0  B <-------------------
 
-Size changed 1.45 GB => 1.37 GB (-85.83 MB, -5.89%)    <--------------------
+Size changed 394.56 MB => 392.56 MB (-2.00 MB, -0.5%)
+```
+
+```shell
+➜  vendedor git:(main) ✗ ls ~/.cargo/git/checkouts/
+colored_json-49209ff4acde481c/  zero-3d3eea17a85fd2bc/
 ```

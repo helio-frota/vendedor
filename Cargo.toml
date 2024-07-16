@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-clap = "4.5"
-postgresql_archive = "0.14.0"
-postgresql_embedded = "0.14.0"
+zero = "0.1.3"
+zero_git = { git = "https://github.com/nrc/zero.git", package = "zero", rev = "6fe64e981ce1e4d07c5cffec3019b5128af4a7b7" }
+
+colored_json = { git = "https://github.com/ctron/colored_json" }
