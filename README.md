@@ -4,11 +4,7 @@ basic test with cargo vendor.
 
 <https://doc.rust-lang.org/cargo/commands/cargo-vendor.html>
 
-## Steps
-
-Clone
-
-### Install and run as described on <https://crates.io/crates/cargo-vendor>
+## Install and run as described on <https://crates.io/crates/cargo-vendor>
 
 ```shell
 cargo install cargo-vendor
